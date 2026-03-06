@@ -1,0 +1,26 @@
+##### like jenkins will run and build the image & push the image
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t toy:v1 .'
+            }
+        }
+
+        stage('Push to ECR') {
+            steps {
+                sh '''
+                aws ecr get-login-password --region us-east-1 \
+                | docker login --username AWS --password-stdin 426192960096.dkr.ecr.us-east-1.amazonaws.com
+
+                docker tag toy:v1 426192960096.dkr.ecr.us-east-1.amazonaws.com/toy:v1
+                docker push 426192960096.dkr.ecr.us-east-1.amazonaws.com/toy:v1
+                '''
+            }
+        }
+
+    }
+}
