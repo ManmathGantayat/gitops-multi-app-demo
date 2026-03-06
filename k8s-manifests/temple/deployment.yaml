@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temple-app
+  namespace: temple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: temple
+  template:
+    metadata:
+      labels:
+        app: temple
+    spec:
+      containers:
+      - name: temple
+        image: yourdockerhub/temple:v1
+        ports:
+        - containerPort: 5000
