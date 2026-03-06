@@ -1,12 +1,19 @@
-name: Build and Push to ECR
+name: Build and Push All Apps to ECR
+
 on:
   push:
+    branches:
+      - main
     paths:
-      - 'apps/books/**'
+      - 'apps/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        app: [books, travel, cars, temple, bike]
 
     steps:
 
@@ -20,17 +27,17 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Login to ECR
+    - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build Docker Image
       run: |
-        docker build -t books ./apps/books
+        docker build -t ${{ matrix.app }} ./apps/${{ matrix.app }}
 
-    - name: Tag Image
+    - name: Tag Docker Image
       run: |
-        docker tag books:latest 426192960096.dkr.ecr.us-east-1.amazonaws.com/books:latest
+        docker tag ${{ matrix.app }}:latest 426192960096.dkr.ecr.us-east-1.amazonaws.com/${{ matrix.app }}:latest
 
-    - name: Push Image
+    - name: Push Docker Image
       run: |
-        docker push 426192960096.dkr.ecr.us-east-1.amazonaws.com/books:latest
+        docker push 426192960096.dkr.ecr.us-east-1.amazonaws.com/${{ matrix.app }}:latest
