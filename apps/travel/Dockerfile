@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 COPY app.py .
 
-CMD ["python", "travel.py"]
+CMD ["python", "app.py"]
