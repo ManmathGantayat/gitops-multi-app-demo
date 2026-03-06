@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bike-app
+  namespace: bike
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bike
+  template:
+    metadata:
+      labels:
+        app: bike
+    spec:
+      containers:
+      - name: bike
+        image: yourdockerhub/bike:v1
+        ports:
+        - containerPort: 5000
