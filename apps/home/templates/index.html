@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GitOps Microservices Platform</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#1e3c72,#2a5298);
+margin:0;
+color:white;
+text-align:center;
+}
+
+h1{
+margin-top:40px;
+font-size:40px;
+}
+
+.container{
+display:grid;
+grid-template-columns: repeat(3,1fr);
+gap:30px;
+padding:60px;
+}
+
+.card{
+background:white;
+color:black;
+padding:40px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.3);
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card h2{
+margin:0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🚀 GitOps Microservices Demo</h1>
+
+<div class="container">
+
+<div class="card" onclick="location.href='/books'">
+<h2>📚 Books</h2>
+<p>Book management service</p>
+</div>
+
+<div class="card" onclick="location.href='/bike'">
+<h2>🏍 Bike</h2>
+<p>Bike services</p>
+</div>
+
+<div class="card" onclick="location.href='/cars'">
+<h2>🚗 Cars</h2>
+<p>Car services</p>
+</div>
+
+<div class="card" onclick="location.href='/temple'">
+<h2>🛕 Temple</h2>
+<p>Temple services</p>
+</div>
+
+<div class="card" onclick="location.href='/travel'">
+<h2>✈ Travel</h2>
+<p>Travel booking service</p>
+</div>
+
+</div>
+
+</body>
+</html>
