@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: temple-ingress
+  namespace: temple
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /temple
+        pathType: Prefix
+        backend:
+          service:
+            name: temple-service
+            port:
+              number: 80
