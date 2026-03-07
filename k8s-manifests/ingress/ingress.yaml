@@ -2,14 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: apps-ingress
-  namespace: books
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
-
-      - path: /books
+      - path: /books(/|$)(.*)
         pathType: Prefix
         backend:
           service:
@@ -17,7 +18,7 @@ spec:
             port:
               number: 80
 
-      - path: /travel
+      - path: /travel(/|$)(.*)
         pathType: Prefix
         backend:
           service:
@@ -25,7 +26,7 @@ spec:
             port:
               number: 80
 
-      - path: /cars
+      - path: /cars(/|$)(.*)
         pathType: Prefix
         backend:
           service:
@@ -33,7 +34,7 @@ spec:
             port:
               number: 80
 
-      - path: /temple
+      - path: /temple(/|$)(.*)
         pathType: Prefix
         backend:
           service:
@@ -41,7 +42,7 @@ spec:
             port:
               number: 80
 
-      - path: /bike
+      - path: /bike(/|$)(.*)
         pathType: Prefix
         backend:
           service:
