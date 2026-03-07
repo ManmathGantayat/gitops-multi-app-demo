@@ -4,14 +4,16 @@ metadata:
   name: apps-ingress
   namespace: default
   annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
+
       - path: /books(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: books-service
@@ -19,7 +21,7 @@ spec:
               number: 80
 
       - path: /travel(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: travel-service
@@ -27,7 +29,7 @@ spec:
               number: 80
 
       - path: /cars(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: cars-service
@@ -35,7 +37,7 @@ spec:
               number: 80
 
       - path: /temple(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: temple-service
@@ -43,7 +45,7 @@ spec:
               number: 80
 
       - path: /bike(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: bike-service
